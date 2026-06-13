@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wingz Hut — Wings · Burgers · Kebab · Grill · Mile End, London</title>
+  <meta name="description" content="Wingz Hut — Halal wings, burgers, kebab & grill in Mile End, London. Browse the menu and call 020 8981 2455 to order. Open 7 days, 11am–11pm." />
+
+  <!-- Fonts: Fraunces (posh display serif) + Manrope (body) + Space Mono (micro-labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- intro splash (shown once per session) -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <div id="splashLottie"></div>
+      <div class="splash-word">Wingz<span>Hut</span></div>
+      <div class="splash-sub">Firing up the grill…</div>
+    </div>
+  </div>
+
+  <!-- grain + ember atmosphere -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="embers" id="embers" aria-hidden="true"></div>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="topbar" id="topbar">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><i data-icon="flame"></i></span>
+      <span class="brand-name">Wingz<span class="brand-accent">Hut</span></span>
+    </a>
+    <a class="topbar-call" href="tel:+442089812455">
+      <span class="dot"></span> 020 8981 2455
+    </a>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero hero--photo" id="top">
+    <div class="hero-bg">
+      <img class="hero-img" src="assets/img/hero.jpg"
+           srcset="assets/img/hero_mobile.jpg 900w, assets/img/hero.jpg 1920w" sizes="100vw"
+           alt="Flame-grilled sticky wings" fetchpriority="high" />
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Mile End · London · Est. Wingz Hut</p>
+      <h1 class="hero-title reveal">
+        <span class="line">FLAME</span>
+        <span class="line outline">GRILLED</span>
+        <span class="line">WINGS</span>
+      </h1>
+      <p class="hero-sub reveal">Wings · Burgers · Kebab · Grill — freshly cooked to order.</p>
+
+      <div class="hero-badges reveal">
+        <span class="badge badge-halal"><i data-icon="badge-check"></i> 100% Halal</span>
+        <span class="badge"><i data-icon="clock"></i> Open 7 Days · 11am–11pm</span>
+      </div>
+
+      <div class="hero-cta reveal">
+        <a class="btn btn-fire" href="tel:+442089812455"><i data-icon="phone"></i> Call to Order</a>
+        <a class="btn btn-ghost" href="#menu">View Menu <i data-icon="arrow-down"></i></a>
+      </div>
+    </div>
+    <div class="hero-scroll reveal" aria-hidden="true">scroll</div>
+  </section>
+
+  <!-- ===== INFO STRIP ===== -->
+  <section class="infostrip">
+    <div class="info"><span class="info-ico"><i data-icon="map-pin"></i></span><span>29 Burdett Road, Mile End,<br/>London E3 4TT</span></div>
+    <div class="info"><span class="info-ico"><i data-icon="clock"></i></span><span>Open 7 days a week<br/>11:00am – 11:00pm</span></div>
+    <div class="info"><span class="info-ico"><i data-icon="phone"></i></span><a href="tel:+442089812455">020 8981 2455<br/><em>tap to call</em></a></div>
+    <div class="info"><span class="info-ico"><i data-icon="leaf"></i></span><span>Freshly prepared<br/>Halal certified</span></div>
+  </section>
+
+  <!-- ===== MENU ===== -->
+  <main class="menu-wrap" id="menu">
+    <div class="menu-head">
+      <p class="eyebrow">The Menu</p>
+      <h2 class="section-title">Pick your <span class="fire-text">favourites</span></h2>
+      <p class="menu-note">Tap <strong>Add</strong> to build your order, then call us to place it. Prices in £.</p>
+    </div>
+
+    <!-- search -->
+    <div class="searchbar">
+      <span class="search-ico"><i data-icon="search"></i></span>
+      <input id="menuSearch" type="search" placeholder="Search the menu… wings, doner, burger" autocomplete="off" aria-label="Search the menu" />
+      <button class="search-clear" id="searchClear" aria-label="Clear search" hidden><i data-icon="x"></i></button>
+    </div>
+    <p class="search-empty" id="searchEmpty" hidden>No items match “<strong id="searchTerm"></strong>”. Try another word, or call us on <a href="tel:+442089812455">020 8981 2455</a>.</p>
+
+    <!-- signature feature bento (filled by JS) -->
+    <div class="sig-intro">
+      <span class="cat-ico"><i data-icon="sparkles"></i></span>
+      <h3 class="cat-title">Signatures</h3>
+      <span class="cat-rule"></span>
+    </div>
+    <div class="signatures" id="signatures"></div>
+
+    <!-- sticky category nav (filled by JS) -->
+    <nav class="catnav" id="catnav" aria-label="Menu categories"></nav>
+
+    <!-- menu sections (filled by JS) -->
+    <div id="menu-sections"></div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-logo">Wingz<span class="brand-accent">Hut</span> <i data-icon="flame"></i></div>
+    <p class="footer-tag">Wings · Burgers · Kebab · Grill</p>
+    <div class="footer-grid">
+      <div><strong>Visit us</strong><br/>29 Burdett Road<br/>Mile End, London E3 4TT</div>
+      <div><strong>Opening hours</strong><br/>Every day<br/>11:00am – 11:00pm</div>
+      <div><strong>Order by phone</strong><br/><a href="tel:+442089812455">020 8981 2455</a></div>
+    </div>
+    <a class="btn btn-fire footer-call" href="tel:+442089812455"><i data-icon="phone"></i> Call 020 8981 2455</a>
+    <p class="footer-fine">100% Halal · © Wingz Hut · www.wingzhut.co.uk</p>
+  </footer>
+
+  <!-- ===== BASKET BUTTON ===== -->
+  <button class="basket-fab" id="basketFab" aria-label="Open basket">
+    <span class="basket-fab-ico"><i data-icon="shopping-basket"></i></span>
+    <span class="basket-fab-count" id="fabCount">0</span>
+    <span class="basket-fab-total" id="fabTotal">£0.00</span>
+  </button>
+
+  <!-- ===== BASKET DRAWER ===== -->
+  <div class="drawer-overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Your basket">
+    <div class="drawer-head">
+      <h3>Your Order</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i data-icon="x"></i></button>
+    </div>
+
+    <div class="drawer-body" id="drawerBody">
+      <!-- items injected here -->
+    </div>
+
+    <div class="drawer-empty" id="drawerEmpty">
+      <div class="empty-lottie" id="emptyLottie"></div>
+      <p>Your basket is empty.</p>
+      <p class="empty-sub">Add some wings to get started!</p>
+    </div>
+
+    <div class="drawer-foot" id="drawerFoot">
+      <div class="drawer-total">
+        <span>Total</span>
+        <span id="drawerTotal">£0.00</span>
+      </div>
+      <p class="phone-note">No checkout here — just call us and read out your order.</p>
+      <a class="btn btn-fire btn-block" id="callOrderBtn" href="tel:+442089812455"><i data-icon="phone"></i> Call to Order · 020 8981 2455</a>
+      <button class="btn btn-ghost btn-block" id="copyOrderBtn"><i data-icon="clipboard-list"></i> Copy order summary</button>
+      <button class="btn btn-text" id="clearBtn">Clear basket</button>
+    </div>
+  </aside>
+
+  <!-- toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/lottie.min.js"></script>
+  <script src="icons.js"></script>
+  <script src="menu.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
