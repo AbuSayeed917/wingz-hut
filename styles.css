@@ -381,7 +381,14 @@ body.searching .catnav { display: none; }
   background: var(--fire-grad); padding: 4px 9px; border-radius: 999px; margin-top: 2px;
   box-shadow: 0 4px 10px -4px rgba(227,119,27,.6);
 }
-.item-name { font-weight: 800; font-size: 1.04rem; line-height: 1.28; color: var(--ink); position: relative; z-index: 1; }
+.item-name { font-weight: 800; font-size: 1.04rem; line-height: 1.28; color: var(--ink); position: relative; z-index: 1; cursor: help; }
+.item-name[title]::after {
+  content: attr(title); position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--cream); padding: 8px 12px; border-radius: 6px;
+  font-size: .8rem; font-weight: 600; white-space: nowrap; z-index: 100;
+  opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+.item-name[title]:hover::after { opacity: 1; }
 .item-desc { color: var(--muted); font-size: .82rem; line-height: 1.44; position: relative; z-index: 1; }
 .item-foot { margin-top: auto; padding-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 10px; position: relative; z-index: 1; }
 .price-coin {

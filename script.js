@@ -51,6 +51,16 @@
     const t = it.name.toLowerCase();
     return t.includes("veggi") || t.includes("salad") || t.includes("mozzarella") || t.includes("cheese & fries") || t.includes("chilli pepper & cheese");
   }
+  function getAllergens(it) {
+    const t = (it.name + " " + (it.desc || "")).toLowerCase();
+    const allergens = [];
+    if (t.includes("chicken") || t.includes("wing") || t.includes("popcorn") || t.includes("nugget")) allergens.push("Poultry");
+    if (t.includes("fish")) allergens.push("Fish");
+    if (t.includes("cheese") || t.includes("mozzarella")) allergens.push("Dairy");
+    if (t.includes("burger") || t.includes("pitta") || t.includes("nan") || t.includes("bread")) allergens.push("Gluten");
+    if (t.includes("doner") || t.includes("lamb") || t.includes("beef")) allergens.push("Beef/Lamb");
+    return allergens.length > 0 ? allergens : null;
+  }
   function heatHTML(n) {
     if (!n) return "";
     return `<span class="heat" title="Spice ${n}/3" aria-label="Spice level ${n} of 3">${svgIcon("flame").repeat(n)}</span>`;
@@ -174,6 +184,9 @@
     const heat = heatHTML(heatLevel(it));
     const best = BESTSELLERS.has(it.name) ? `<span class="tag-best">${svgIcon("star")}Bestseller</span>` : "";
     const veg = isVeg(it) ? `<span class="tag-veg">${svgIcon("leaf")}Veg</span>` : "";
+    const allergens = getAllergens(it);
+    const allergenTitle = allergens ? `Contains: ${allergens.join(", ")}` : "";
+    const nameWithTooltip = allergenTitle ? `<h4 class="item-name" title="${allergenTitle}">${it.name}</h4>` : `<h4 class="item-name">${it.name}</h4>`;
     const noChip = it.no ? `<span class="item-no">${it.no}</span>` : "";
     const desc = it.desc ? `<p class="item-desc">${it.desc}</p>` : "";
     const meta = veg ? `<div class="card-meta">${veg}</div>` : "";
@@ -199,7 +212,7 @@
           ${best}
         </div>
         <div class="card-body">
-          <div class="item-top"><h4 class="item-name">${it.name}</h4>${heat}</div>
+          <div class="item-top">${nameWithTooltip}${heat}</div>
           ${meta}
           ${desc}
           ${foot}
